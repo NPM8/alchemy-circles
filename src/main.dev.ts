@@ -71,7 +71,7 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath('icon.svg'),
     webPreferences: {
       nodeIntegration: true,
     },
