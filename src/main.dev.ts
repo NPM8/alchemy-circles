@@ -11,7 +11,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -104,6 +104,19 @@ const createWindow = async () => {
   mainWindow.webContents.on('new-window', (event, url) => {
     event.preventDefault();
     shell.openExternal(url);
+  });
+
+  ipcMain.on('select-dir', async (event, dir) => {
+    const result =
+      mainWindow &&
+      (await dialog.showOpenDialog(mainWindow, {
+        defaultPath: dir,
+        properties: ['openDirectory'],
+      }));
+
+    event.reply('selected-dir', {
+      dir: result?.filePaths?.[0],
+    });
   });
 
   // Remove this if your app does not use auto updates
