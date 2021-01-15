@@ -6,14 +6,46 @@ import { useParams } from 'react-router-dom';
 import generate from './generator';
 
 const SvgGen = () => {
-  const { seed, color } = useParams<{ seed: string; color: string }>();
+  const { seed, color, pow } = useParams<{
+    seed: string;
+    color: string;
+    pow: string;
+  }>();
+  console.log(seed, color, pow);
   const [dir, setDir] = useState<string>(process.cwd());
-  console.log(seed, color);
-  const data = generate(seed ?? 0);
+  const data = generate(seed ?? 0, color, parseInt(pow, 10));
 
   const saveFileSvg = () => {
     const path = join(dir, `gen-${Date.now()}.svg`);
-    writeFileSync(path, data);
+    data.setAttribute('version', '1.1');
+
+    data.removeAttribute('xmlns');
+    data.removeAttribute('xlink');
+
+    // These are needed for the svg
+    if (!data.hasAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns')) {
+      data.setAttributeNS(
+        'http://www.w3.org/2000/xmlns/',
+        'xmlns',
+        'http://www.w3.org/2000/svg'
+      );
+    }
+
+    if (!data.hasAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink')) {
+      data.setAttributeNS(
+        'http://www.w3.org/2000/xmlns/',
+        'xmlns:xlink',
+        'http://www.w3.org/1999/xlink'
+      );
+    }
+
+    const xmlns = new XMLSerializer();
+
+    const source = xmlns.serializeToString(data);
+
+    const toWrite = `<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">${source}`;
+
+    writeFileSync(path, toWrite);
     alert(`File saved as ${path}`);
   };
 
@@ -32,7 +64,7 @@ const SvgGen = () => {
   });
 
   const innerHtml = {
-    __html: data,
+    __html: data.outerHTML,
   };
 
   // eslint-disable-next-line react/no-danger

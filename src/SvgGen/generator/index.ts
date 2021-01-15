@@ -17,13 +17,13 @@ import {
   genLine,
 } from './utils';
 
-const generate = (id: number | string) => {
+const generate = (id: number | string, color: string, power: number) => {
   const rng = new Prando(id);
 
   const lineWidth = 2;
-  const size = 128 * lineWidth;
+  const size = 2 ** power * lineWidth;
 
-  const defaults = [stroke('black'), strokeWidth(lineWidth), fill('none')];
+  const defaults = [stroke(`#${color}`), strokeWidth(lineWidth), fill('none')];
 
   const ns = setAttributes([width(size), height(size)])(
     document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -257,7 +257,7 @@ const generate = (id: number | string) => {
       break;
   }
 
-  return ns.outerHTML;
+  return ns;
 };
 
 export default generate;
