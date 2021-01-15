@@ -9,7 +9,7 @@ export default function App() {
       <Link to="/">Back</Link>
       <Switch>
         <Route path="/" exact component={MainPage} />
-        <Route path="/gen/:seed/:color" component={SvgGen} />
+        <Route path="/gen/:seed/:color/:pow" component={SvgGen} />
       </Switch>
     </Router>
   );
