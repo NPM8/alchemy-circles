@@ -72,3 +72,8 @@ a:hover {
   align-items: center;
   margin: 20px 0;
 }
+
+.mainForm {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const MainPage = () => {
   const [seed, setSeed] = useState<string>('0');
@@ -9,29 +9,30 @@ const MainPage = () => {
   return (
     <div>
       <h1>ALCHEMY CIRCLE CREATOR</h1>
-      <form>
-        <label htmlFor="seed">
-          <input
-            value={seed}
-            name="seed"
-            id="seed"
-            type="text"
-            onChange={(evt) => setSeed(evt.target.value)}
-          />
-        </label>
-        <label htmlFor="color">
-          <input
-            type="color"
-            name="color"
-            id="color"
-            value={color}
-            onChange={(evt) => setColor(evt.target.value)}
-          />
-        </label>
+      <form className="mainForm">
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="seed">Seed</label>
+        <input
+          value={seed}
+          name="seed"
+          id="seed"
+          type="text"
+          onChange={(evt) => setSeed(evt.target.value)}
+        />
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="color">Color</label>
+        <input
+          type="color"
+          name="color"
+          id="color"
+          value={color}
+          onChange={(evt) => setColor(evt.target.value)}
+        />
         <button
           type="button"
           onClick={() => {
-            push(`/gen/${seed}/${color}`);
+            console.log(seed, color);
+            push(`/gen/${seed}/${color.substr(1)}`);
           }}
         >
           Generate
