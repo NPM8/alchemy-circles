@@ -1,14 +1,12 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import generate from './generator';
 
-type SvgGenProps = {
-  id?: number;
-} & RouteComponentProps;
-
-const SvgGen = ({ id }: SvgGenProps) => {
+const SvgGen = () => {
+  const { seed, color } = useParams<{ seed: string; color: string }>();
+  console.log(seed, color);
   const innerHtml = {
-    __html: generate(id ?? 0),
+    __html: generate(seed ?? 0),
   };
 
   // eslint-disable-next-line react/no-danger

@@ -1,20 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MainPage from './MainPage';
 import SvgGen from './SvgGen';
-
-const Hello = () => {
-  return (
-    <div>
-      Test <SvgGen />
-    </div>
-  );
-};
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={Hello} />
+        <Route path="/" component={MainPage} />
+        <Route path="/gen/:seed/:color" component={SvgGen} />
       </Switch>
     </Router>
   );
