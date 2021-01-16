@@ -248,12 +248,6 @@ const generate = (id: number | string, color: string, power: number) => {
           ])(genLine(url))
         );
       }
-
-      /*
-        TODO: Add lines from orginal algo (228, 246) https://github.com/CiaccoDavide/Alchemy-Circles-Generator/blob/master/src_PHP/alchemy-svg.php
-
-        There are based on global variables need to reconsider it.
-      */
       break;
   }
 
