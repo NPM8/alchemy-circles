@@ -6,14 +6,20 @@ import { useParams } from 'react-router-dom';
 import generate from './generator';
 
 const SvgGen = () => {
-  const { seed, color, pow } = useParams<{
+  const { seed, color, pow, background } = useParams<{
     seed: string;
     color: string;
     pow: string;
+    background: string;
   }>();
-  console.log(seed, color, pow);
+  console.log(seed, color, pow, background);
   const [dir, setDir] = useState<string>(process.cwd());
-  const data = generate(seed ?? 0, color, parseInt(pow, 10));
+  const data = generate(
+    seed ?? 0,
+    color,
+    parseInt(pow, 10),
+    !background || background === 'none' ? 'none' : `#${background}`
+  );
 
   const saveFileSvg = () => {
     const path = join(dir, `gen-${Date.now()}.svg`);

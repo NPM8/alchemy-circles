@@ -83,3 +83,8 @@ a:hover {
   max-height: 50vh;
   overflow: auto;
 }
+
+.backgroundHandler {
+  display: flex;
+  flex-direction: row;
+}

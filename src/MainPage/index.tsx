@@ -5,6 +5,8 @@ const MainPage = () => {
   const [seed, setSeed] = useState<string>('0');
   const [color, setColor] = useState('#000');
   const [size, setSize] = useState('2');
+  const [background, togleBackground] = useState<boolean>(false);
+  const [bgColor, setBgColor] = useState('#ffffff');
   const { push } = useHistory();
 
   return (
@@ -40,11 +42,33 @@ const MainPage = () => {
           max="9"
           onChange={(evt) => setSize(evt.target.value)}
         />
+        <div>
+          <input
+            type="checkbox"
+            name="background"
+            checked={background}
+            onChange={(evt) => togleBackground(evt.target.checked)}
+            id="backgroundCh"
+          />
+          Background
+          <input
+            type="color"
+            disabled={!background}
+            name="bgColor"
+            id="bg-color"
+            value={bgColor}
+            onChange={(evt) => setBgColor(evt.target.value)}
+          />
+        </div>
         <button
           type="button"
           onClick={() => {
             console.log(seed, color);
-            push(`/gen/${seed}/${color.substr(1)}/${size}`);
+            push(
+              `/gen/${seed}/${color.substr(1)}/${size}/${
+                background ? bgColor.substr(1) : 'none'
+              }`
+            );
           }}
         >
           Generate
