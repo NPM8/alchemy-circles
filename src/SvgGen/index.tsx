@@ -70,7 +70,7 @@ const SvgGen = () => {
   // eslint-disable-next-line react/no-danger
   return (
     <>
-      <div dangerouslySetInnerHTML={innerHtml} />
+      <div dangerouslySetInnerHTML={innerHtml} id="handlerSvg" />
       <div>
         <p>Current path to save {dir}</p>
         <button type="button" onClick={selectFolderClick}>
