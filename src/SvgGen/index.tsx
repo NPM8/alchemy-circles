@@ -77,7 +77,7 @@ const SvgGen = () => {
           Select folder
         </button>
         <button type="button" onClick={saveFileSvg}>
-          Save to svg
+          Save as svg
         </button>
       </div>
     </>
