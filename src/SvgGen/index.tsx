@@ -90,8 +90,4 @@ const SvgGen = () => {
   );
 };
 
-SvgGen.defaultProps = {
-  id: 12345722,
-};
-
 export default SvgGen;
