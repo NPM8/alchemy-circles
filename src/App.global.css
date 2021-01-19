@@ -88,3 +88,8 @@ a:hover {
   display: flex;
   flex-direction: row;
 }
+
+.save-handler {
+  display: flex;
+  flex-direction: column;
+}

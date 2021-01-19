@@ -79,15 +79,17 @@ const SvgGen = () => {
   return (
     <>
       <div dangerouslySetInnerHTML={innerHtml} id="handlerSvg" />
-      <div>
-        <p>Current path to save {join(dir, fileName)}</p>
+      <div className="save-handler">
+        <p>Current path to save {join(dir, `${fileName}.svg`)}</p>
         <ChangeInputName value={fileName} setValue={setFileName} />
-        <button type="button" onClick={selectFolderClick}>
-          Select folder
-        </button>
-        <button type="button" onClick={saveFileSvg}>
-          Save as svg
-        </button>
+        <div>
+          <button type="button" onClick={selectFolderClick}>
+            Select folder
+          </button>
+          <button type="button" onClick={saveFileSvg}>
+            Save as svg
+          </button>
+        </div>
       </div>
     </>
   );
