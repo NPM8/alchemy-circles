@@ -3,6 +3,7 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ChangeInputName from './components/ChangeInputName';
 import generate from './generator';
 
 const SvgGen = () => {
@@ -14,6 +15,7 @@ const SvgGen = () => {
   }>();
   console.log(seed, color, pow, background);
   const [dir, setDir] = useState<string>(process.cwd());
+  const [fileName, setFileName] = useState<string>(`gen-${Date.now()}`);
   const data = generate(
     seed ?? 0,
     color,
@@ -22,7 +24,7 @@ const SvgGen = () => {
   );
 
   const saveFileSvg = () => {
-    const path = join(dir, `gen-${Date.now()}.svg`);
+    const path = join(dir, `${fileName}.svg`);
     data.setAttribute('version', '1.1');
 
     data.removeAttribute('xmlns');
@@ -78,7 +80,8 @@ const SvgGen = () => {
     <>
       <div dangerouslySetInnerHTML={innerHtml} id="handlerSvg" />
       <div>
-        <p>Current path to save {dir}</p>
+        <p>Current path to save {join(dir, fileName)}</p>
+        <ChangeInputName value={fileName} setValue={setFileName} />
         <button type="button" onClick={selectFolderClick}>
           Select folder
         </button>
