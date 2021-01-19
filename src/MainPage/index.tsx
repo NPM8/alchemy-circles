@@ -9,19 +9,31 @@ const MainPage = () => {
   const [bgColor, setBgColor] = useState('#ffffff');
   const { push } = useHistory();
 
+  const randomSeed: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setSeed(Math.floor(Math.random() * 100000).toString());
+  };
+
   return (
     <div>
       <h1>ALCHEMY CIRCLE CREATOR</h1>
       <form className="mainForm">
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="seed">Seed</label>
-        <input
-          value={seed}
-          name="seed"
-          id="seed"
-          type="text"
-          onChange={(evt) => setSeed(evt.target.value)}
-        />
+        <div>
+          <input
+            value={seed}
+            name="seed"
+            id="seed"
+            type="text"
+            onChange={(evt) => setSeed(evt.target.value)}
+          />
+          <button type="button" onClick={randomSeed}>
+            Random
+          </button>
+        </div>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="color">Color</label>
         <input
