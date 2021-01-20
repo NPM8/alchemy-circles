@@ -30,8 +30,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "Alchemy Circle Generator",
+    "appId": "org.acg.AlchemyCircleGenerator",
     "files": [
       "dist/",
       "node_modules/",
