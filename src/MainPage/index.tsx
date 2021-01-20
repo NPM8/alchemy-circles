@@ -18,7 +18,6 @@ const MainPage = () => {
 
   return (
     <div>
-      <h1>ALCHEMY CIRCLE CREATOR</h1>
       <form className="mainForm">
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="seed">Seed</label>
