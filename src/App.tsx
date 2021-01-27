@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import MainPage from './MainPage';
 import SvgGen from './SvgGen';
+import HistoryPage from './HistoryPage';
 
 const Title = () => {
   const { pathname } = useLocation();
@@ -25,9 +26,11 @@ export default function App() {
   return (
     <Router>
       <Link to="/">Back</Link>
+      <Link to="/history">History</Link>
       <Title />
       <Switch>
         <Route path="/" exact component={MainPage} />
+        <Route path="/history" component={HistoryPage} />
         <Route path="/gen/:seed/:color/:pow/:background" component={SvgGen} />
       </Switch>
     </Router>
