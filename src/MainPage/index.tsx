@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import consts from '../consts';
+import { SavedConfigs } from '../types';
+
+const { SEEDS_HISTORY } = consts;
 
 const MainPage = () => {
   const [seed, setSeed] = useState<string>('0');
@@ -83,6 +87,25 @@ const MainPage = () => {
           }}
         >
           Generate
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const data: SavedConfigs = JSON.parse(
+              localStorage.getItem(SEEDS_HISTORY) || '[]'
+            );
+
+            data.push({
+              seed,
+              color: color.substr(1),
+              size,
+              background: background ? bgColor.substr(1) : 'none',
+            });
+
+            localStorage.setItem(SEEDS_HISTORY, JSON.stringify(data));
+          }}
+        >
+          Save
         </button>
       </form>
     </div>

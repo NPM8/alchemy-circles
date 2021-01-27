@@ -5,6 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ChangeInputName from './components/ChangeInputName';
 import generate from './generator';
+import { SavedConfigs } from '../types';
+import consts from '../consts';
+
+const { SEEDS_HISTORY } = consts;
 
 const SvgGen = () => {
   const { seed, color, pow, background } = useParams<{
@@ -61,6 +65,21 @@ const SvgGen = () => {
     ipcRenderer.send('select-dir', dir);
   };
 
+  const saveToHistory = () => {
+    const dataFromHistory: SavedConfigs = JSON.parse(
+      localStorage.getItem(SEEDS_HISTORY) || '[]'
+    );
+
+    dataFromHistory.push({
+      seed,
+      color,
+      size: pow,
+      background,
+    });
+
+    localStorage.setItem(SEEDS_HISTORY, JSON.stringify(data));
+  };
+
   useEffect(() => {
     ipcRenderer.on('selected-dir', (_event, newDir) => {
       setDir(newDir.dir);
@@ -88,6 +107,9 @@ const SvgGen = () => {
           </button>
           <button type="button" onClick={saveFileSvg}>
             Save as svg
+          </button>
+          <button type="button" onClick={saveToHistory}>
+            Save to history
           </button>
         </div>
       </div>
