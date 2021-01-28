@@ -78,7 +78,6 @@ const MainPage = () => {
         <button
           type="button"
           onClick={() => {
-            console.log(seed, color);
             push(
               `/gen/${seed}/${color.substr(1)}/${size}/${
                 background ? bgColor.substr(1) : 'none'

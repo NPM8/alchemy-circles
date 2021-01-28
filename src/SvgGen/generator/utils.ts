@@ -1,7 +1,6 @@
 export const setAttributes: (
   attrs: [string, string][]
 ) => <T extends Element>(element: T) => T = (attrs) => (element) => {
-  console.log(attrs[0], element);
   attrs.forEach(([attr, value]) => element.setAttribute(attr, value));
   return element;
 };

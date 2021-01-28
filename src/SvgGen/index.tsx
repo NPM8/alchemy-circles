@@ -17,7 +17,6 @@ const SvgGen = () => {
     pow: string;
     background: string;
   }>();
-  console.log(seed, color, pow, background);
   const [dir, setDir] = useState<string>(process.cwd());
   const [fileName, setFileName] = useState<string>(`gen-${Date.now()}`);
   const data = generate(
