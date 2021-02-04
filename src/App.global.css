@@ -2,12 +2,15 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
+@import '~antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
+.header {
+  display: flex;
+  flex-direction: horizontal;
+}
+
 .logo {
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  margin-right: 30px;
 }
